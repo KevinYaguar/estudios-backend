@@ -1,0 +1,16 @@
+{
+  "name": "middlewere_ejercicio_escritor",
+  "version": "1.0.0",
+  "description": "ejercicios escritores",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "KevinYaguar",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
