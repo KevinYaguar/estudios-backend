@@ -1,0 +1,72 @@
+Escritores
+Genera un array y que cada posición contenga un elemento
+tipo objeto como el siguiente:
+{
+    "escritores": [
+        {
+            "id": 1,
+            "nombre": "Jorge Luis",
+            "apellido": "Borges",
+            "fechaDeNacimiento": "24/08/1899",
+            "libros": [
+                {
+                    "id": 1,
+                    "titulo": "Ficciones",
+                    "descripcion": "Se trata de uno mas sus mas...",
+                    "anioPublicacion": 1944
+                },
+                {
+                    "id": 2,
+                    "titulo": "El Aleph",
+                    "descripcion": "Ptra recopilacion de sus...",
+                    "anioPublicacion": 1949
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nombre": "Paul B",
+            "apellido": "Preciado",
+            "fechaDeNacimiento": "11/11/1970",
+            "libros": [
+                {
+                    "id": 1,
+                    "titulo": "Manifiesto contrasexual",
+                    "descripcion": "Se trata de uno mas sus mas...",
+                    "anioPublicacion": 2002
+                },
+                {
+                    "id": 1,
+                    "titulo": "Lecturas feministas",
+                    "descripcion": "Se trata de uno mas sus mas...",
+                    "anioPublicacion": 2018
+                }
+            ]
+        }
+    ]
+}
+
+Rutas / Acciones
+/autores
+- GET: devuelve todos los autores
+- POST: crea un nuevo autor
+
+/autores/:id
+- GET: devuelve el autor con el id indicado
+- DELETE: elimina el autor con el id indicado
+- PUT: modifica el autor con el id indicado
+Valida a través de un middleware que el escritor
+exista en tu array
+
+Rutas / Libros
+/autores/:id/libros
+- GET: devuelve todos los libros de un autor
+- POST: agrega un nuevo libro al autor
+Utiliza el mismo middleware para verificar que le autor exista
+/autores/:id/libros/:idLibro
+- GET: devuelve el libro con el id indicado del autor
+- PUT: modifica el libro con el id indicado del autor
+- DELETE: eliminar el libro con el id indicado del autor
+Crea un nuevo middleware para verificar la existencia del
+libro y también que corresponda al autor
+

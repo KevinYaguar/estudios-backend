@@ -98,7 +98,6 @@ app.get('/autores', (req, res) => {
     let status = 200;
     let respuesta = {};
     let {id, libro} = req.query;
-    //console.log(libro)
     if (id) {
         if(libro){
             autor = buscarPorId(id);
@@ -138,7 +137,7 @@ app.delete('/autores', solicitarId, validarId, (req, res) => {
     let {id, libro} = req.query;
         if(libro){
             autor = buscarPorId(id);          
-             autor.libros.splice((libro - 1), 1);        
+            autor.libros.splice((libro - 1), 1);        
             respuesta = {
             status: status,
             mensaje: 'Libro eliminado',
@@ -159,15 +158,24 @@ app.delete('/autores', solicitarId, validarId, (req, res) => {
 
 app.put('/autores', solicitarId, validarId, (req, res) => {
     status = 200;
-    let {
-        id
-    } = req.query;       
+    let {id, libro} = req.query;    
+        if(libro){
+            autor = buscarPorId(id); 
+            autor.libros.splice((libro - 1), 1, req.body);
+            respuesta = {
+                status: status,
+                mensaje: 'Libro modificado',
+                modificacion: req.body
+            }
+
+        } else if(!libro){
             escritores.splice((id - 1), 1, req.body);
             respuesta = {
                 status: status,
                 mensaje: 'Autor/a modificado/a',
                 modificacion: req.body
             }
+        }
     res.status(status).send(respuesta);
 })
 
