@@ -1,0 +1,23 @@
+{
+  "name": "seguridad",
+  "version": "1.0.0",
+  "description": "Ejercicios de seguridad ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "seguridad",
+    "ejercicios"
+  ],
+  "author": "KevinYaguar",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.3",
+    "helmet": "^4.2.0"
+  }
+}

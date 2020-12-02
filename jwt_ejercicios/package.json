@@ -1,0 +1,19 @@
+{
+  "name": "jwt_ejercicios",
+  "version": "1.0.0",
+  "description": "ejercicios con jwt express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jwt",
+    "express"
+  ],
+  "author": "KevinYaguar",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0"
+  }
+}
