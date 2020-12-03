@@ -1,13 +1,18 @@
 const Sequelize = require('sequelize');
 const mysql = require('mysql2');
-const sequelize = new Sequelize('mysql://user:pass@host:port/bandas');
+const path = 'mysql://root@localhost:3306/test';
+const sequelize = new Sequelize(path, {operatorsAliases: false});
 
 
 
-sequelize.query('SELECT * FROM bandas', 
-{type: sequelize.QueryTypes.SELECT}
-).then(function(proyects){
-    console.log(proyects)
-});
+function obetenerEspecificosRegistros() {
 
-console.log(query);
+    sequelize.query("SELECT nombre FROM bandas", {
+            type: sequelize.QueryTypes.SELECT
+        }).then(proyects => console.log(proyects))
+        .catch(err => console.log(err))
+
+}
+//obetenerEspecificosRegistros();
+module.exports = sequelize;
+
