@@ -10,9 +10,36 @@
     <p>Busca en nuestra base de datos la banda que desees: </p>
     
     <button id="buscar-bandas">Buscar Todas las bandas</button>
-    <div id="resultados-banda">
-        
-    </div>
+    <button id="listo">Listo!</button>
+    <div id="resultados-banda"></div>
+    <p>O puedes buscar tu banda preferida aqui:</p>
+    <input type="text" name="banda-preferida" id="banda-preferida" placeholder="Ingresa el nombre de tu banda preferida">
+    <button id="resultados-banda-preferida">Buscar</button>
+    <button id="listo-prefe">Listo!</button>
+    <div id="resultados-preferida"></div>
+
+    <p>No encuentras tu banda? Agregala a la base de datos!</p>
+    <span>nombre: </span> <input type="text" name="nueva-banda" id="nueva-banda">
+    <span>Integrantes: </span> <input type="text" name="nueva-banda-integrantes" id="nueva-banda-integrantes">
+    <span>Fecha de Inicio: </span> <input type="text" name="nueva-banda-fecha-de-inicio" id="nueva-banda-fecha-de-inicio">
+    <span>Fecha de Separacion: </span> <input type="text" name="nueva-banda-fecha-de-separacion" id="nueva-banda-fecha-de-separacion">
+    <span>Pais: </span> <input type="text" name="nueva-banda-pais" id="nueva-banda-pais">
+    <button id="agregar-banda">Agregar Banda</button>
+
+    <p>Es necesario borrar una banda? Ingresa su nombre aqui: </p>
+    <input type="text" name="banda-eliminar" id="eliminar-input">
+    <button id="eliminar-banda">Eliminar</button>
+    
+
+    <p>Quieres cambiar los datos de alguna banda?</p>
+    <p>Ingresa el nombre de la banda que deseas modificar:</p>
+    <input type="text" name="modificacion-nombre" id="modificacion-nombre">
+    <p>Ingresa el dato que deseas modificar:</p>
+    <input type="text" name="modificacion-campo-input" id="modificacion-campo-input">
+    <p>Ingresa el nuevo valor: </p>
+    <input type="text" name="modificacion-input" id="modificacion-valor-input">
+    <button id="lalala">Modificar Datos</button> 
+
 
     <script src="musica.js"></script>
 </body>

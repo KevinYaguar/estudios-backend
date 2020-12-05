@@ -15,22 +15,38 @@ app.get('/bandas', (req, res) => {
         .catch(err => console.log(err))
 })
 
-app.get('/bandas/nombres', (req, res)=>{
-        
-         // recibe [ "nombre"]
+app.post('/bandas/nombres', (req, res)=>{
+        let nombre = req.body.nombre;
+         // recibe {"nombre": "La Renga"}
          sequelize.query(`SELECT * FROM bandas WHERE nombre = ?`, {
-            replacements: [req.body],
+            replacements: [nombre],
             type: sequelize.QueryTypes.SELECT
         }).then(proyects =>
             res.status(200).send(proyects)
         )
         .catch(err => console.log(err))
 })
+////subir banda
 
-app.post('/bandas', (req, res) => {
-    //recibe ["NULL", "The Beatles", 5, "1960-01-01", "1970-01-01", "Reino Unido"]
-    sequelize.query('INSERT INTO bandas (id, nombre, integrantes, fecha_inicio, fecha_separacion,pais) VALUES (?, ?, ?, ?, ?, ?)', {
-            replacements: req.body
+function verificarSiExiste (req, res, nombre, next){
+    app.get('/bandas', (req, res) => {
+        sequelize.query("SELECT * FROM bandas", {
+            type: sequelize.QueryTypes.SELECT
+        }).then(proyects =>{
+            let banda = proyects.find(bandaYaExiste => bandaYaExiste.nombre == nombre)
+            if(banda){
+                return next();
+            } else if(!banda){
+                return res.status(400).send({mensaje: 'La banda ya existe en nuestra base de datos'})
+            }
+        }).catch(err => console.log(err))
+})
+}
+
+app.post('/bandas', /*verificarSiExiste,*/ (req, res) => {
+    let {id, nombre, integrantes, fecha_inicio, fecha_separacion, pais} = req.body;
+    sequelize.query('INSERT INTO bandas (id, nombre, integrantes, fecha_inicio, fecha_separacion, pais) VALUES (?, ?, ?, ?, ?, ?)', {
+            replacements: [id, nombre, integrantes, fecha_inicio, fecha_separacion, pais]
         })
         .then(proyects => res.status(200).send({
             status: 'OK',
@@ -41,11 +57,10 @@ app.post('/bandas', (req, res) => {
 
 
 app.delete('/bandas', (req, res) => {
-    // Recibe ["Los Redondos"]
-    sequelize.query('DELETE FROM bandas WHERE nombre = :nombre', {
-            replacements: {
-                nombre: req.body
-            }
+    // Recibe    {"nombre": "La Renga"}
+    let nombre = req.body.nombre;
+    sequelize.query('DELETE FROM bandas WHERE nombre = ?', {
+            replacements: [nombre]
         })
         .then(proyects => res.status(200).send({
             status: 'OK',
@@ -55,19 +70,17 @@ app.delete('/bandas', (req, res) => {
 })
 
 app.put('/bandas', (req, res) => {
-    //recibe [campo, modificacion, nombreDeLaBanda]
-    function actualizar(campo) {
+    //recibe {nombre: "banda", campo: "campo", modificacion = ""}
+    let {nombre, campo, modificacion} = req.body;
+    
         sequelize.query(`UPDATE bandas SET ${campo} = ? WHERE nombre = ?`, {
-            replacements: [req.body[1], req.body[2]]
+            replacements: [modificacion, nombre]
         }).then(proyects =>
             res.status(200).send({
                 status: 'OK',
                 mensaje: 'Modificacion realizada'
             })
         ).catch(err => console.log(err));
-    }
-    actualizar(req.body[0])
-
 })
 
 app.listen(process.env.SERVER_PORT, (req, res) => {
