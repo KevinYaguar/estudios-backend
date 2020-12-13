@@ -15,7 +15,7 @@ app.get('/bandas', (req, res) => {
         .catch(err => console.log(err))
 })
 
-app.post('/bandas/nombres', (req, res)=>{
+app.get('/bandas/nombres', (req, res)=>{
         let nombre = req.body.nombre;
          // recibe {"nombre": "La Renga"}
          sequelize.query(`SELECT * FROM bandas WHERE nombre = ?`, {
@@ -83,7 +83,7 @@ app.put('/bandas', (req, res) => {
         ).catch(err => console.log(err));
 })
 
-app.listen(process.env.SERVER_PORT, (req, res) => {
+app.listen(process.env.SERVER_PORT_BANDAS, (req, res) => {
     console.log('Servidor corriendo en el puerto 5000...')
 })
 
